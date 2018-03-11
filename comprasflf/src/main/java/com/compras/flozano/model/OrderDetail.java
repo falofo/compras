@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Table(name = "order_datail")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "OrderDatail.findAll", query = "SELECT o FROM OrderDatail o")})
+        @NamedQuery(name = "OrderDetail.findAll", query = "SELECT o FROM OrderDetail o")})
 public class OrderDetail implements Serializable{
 
     private static final long serialVersionUID = -3818657259241588531L;

@@ -1,8 +1,8 @@
 package com.compras.flozano.model;
 
-import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,9 +11,9 @@ import java.util.Date;
  */
 @Entity
 @Cacheable(false)
-@Table(name = "order")
+@Table(name = "\"order\"")
 @NamedQueries({
-        @NamedQuery(name = "Order.findByCustomerId", query = "SELECT o FROM Order o WHERE o.customer_id = :customer_id")
+        @NamedQuery(name = "Order.findByCustomerId", query = "SELECT o FROM Order o WHERE o.customerId = :customer_id")
 })
 public class Order implements Serializable{
     private static final long serialVersionUID = 3992734751972453486L;
