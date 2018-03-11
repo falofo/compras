@@ -10,9 +10,16 @@ import java.util.List;
 public interface IOrderService {
     /**
      * Metodo para obtener lista de ordenes de acuerdo al id del cliente
-     * @param customerId
-     * @return
+     * @param customerId id del cliente
+     * @return List<{@link Order}>listado de todos los clientes
      */
     List<Order> getOrder(Integer customerId);
+
+    /**
+     * Método para guardar ordenes
+     * @param {@link Order}
+     * @return id orden guardada
+     */
+    Integer saveOrder(Order order);
 }
 

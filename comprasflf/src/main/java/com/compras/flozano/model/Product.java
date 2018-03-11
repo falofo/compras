@@ -5,9 +5,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
+ * Clase que representa los productos
  * Created by Fabiani Lozano on 10/03/2018.
  */
 @Entity
+@Cacheable(false)
 @Table(name = "product")
 @XmlRootElement
 @NamedQueries({
@@ -15,7 +17,6 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = -3662036865278080689L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "product_id")
     private Integer productId;

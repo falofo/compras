@@ -1,28 +1,42 @@
 package com.compras.flozano.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * Created by Fabiani Lozano on 10/03/2018.
+ * Clase que representa los productos disponibles por cliente
+ * Created by Fabiani Lozano on 11/03/2018.
  */
 @Entity
+@Cacheable(false)
 @Table(name = "available_product")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "AvailableProduct.findAll", query = "SELECT p FROM AvailableProduct p")})
+        @NamedQuery(name = "AvailableProduct.findAll", query = "SELECT c FROM AvailableProduct c"),
+        @NamedQuery(name = "AvailableProduct.findByCustomerId", query = "SELECT c FROM AvailableProduct c WHERE c.customerId = :customer_id")})
 public class AvailableProduct implements Serializable{
-
-    private static final long serialVersionUID = 8326540584875499133L;
+    private static final long serialVersionUID = -1670586973340721239L;
     @Id
-    @Basic(optional = false)
+    @NotNull
+    @Column(name = "available_id")
+    private Integer availableId;
+    @NotNull
     @Column(name = "customer_id")
     private Integer customerId;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "product_id")
-    private String productId;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    public Integer getAvailableId() {
+        return availableId;
+    }
+
+    public void setAvailableId(Integer availableId) {
+        this.availableId = availableId;
+    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -32,11 +46,11 @@ public class AvailableProduct implements Serializable{
         this.customerId = customerId;
     }
 
-    public String getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

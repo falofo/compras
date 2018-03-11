@@ -3,8 +3,10 @@ package com.compras.flozano.model;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 /**
+ * Clase que representa los clientes
  * Created by Fabiani Lozano on 10/03/2018.
  */
 @Entity
@@ -25,6 +27,11 @@ public class Customer implements Serializable{
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
+    /*@JoinTable(name = "available_product", joinColumns = {
+            @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "product_id", referencedColumnName = "product_id")})
+    @ManyToMany
+    private List<Product> productList;*/
 
     public Integer getCustomerId() {
         return customerId;
@@ -49,4 +56,12 @@ public class Customer implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    /*public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }*/
 }

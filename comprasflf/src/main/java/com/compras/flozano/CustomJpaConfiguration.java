@@ -9,12 +9,16 @@ import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import javax.naming.NamingException;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +27,7 @@ import java.util.Map;
  * Created by Fabiani Lozano on 11/03/2018.
  */
 @Configuration
+@EnableTransactionManagement
 @EntityScan(basePackages = "com.compras.flozano.model")
 public class CustomJpaConfiguration extends JpaBaseConfiguration {
 
@@ -52,6 +57,13 @@ public class CustomJpaConfiguration extends JpaBaseConfiguration {
         em.setJpaPropertyMap(initJpaProperties());
 
         return em;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+        final JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(emf);
+        return transactionManager;
     }
 
     private Map<String,?> initJpaProperties() {
