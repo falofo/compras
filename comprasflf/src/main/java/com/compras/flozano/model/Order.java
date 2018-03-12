@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "\"order\"")
 @XmlRootElement
 @NamedQueries({
-        @NamedQuery(name = "Order.findByCustomerId", query = "SELECT o FROM Order o WHERE o.customerId = :customer_id")
+        @NamedQuery(name = "Order.findByCustomerId", query = "SELECT o FROM Order o WHERE o.customerId = :customer_id AND o.creationDate BETWEEN :start_date AND :end_date")
 })
 public class Order implements Serializable{
     private static final long serialVersionUID = 3992734751972453486L;

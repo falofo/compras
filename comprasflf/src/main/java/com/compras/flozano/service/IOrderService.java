@@ -2,6 +2,7 @@ package com.compras.flozano.service;
 
 import com.compras.flozano.model.Order;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,13 +12,15 @@ public interface IOrderService {
     /**
      * Metodo para obtener lista de ordenes de acuerdo al id del cliente
      * @param customerId id del cliente
-     * @return List<{@link Order}>listado de todos los clientes
+     * @param startDate Fecha inicial de consulta
+     * @param endDate Fecha Final del consulta
+     * @return List {@link Order} listado de todos los clientes
      */
-    List<Order> getOrder(Integer customerId);
+    List<Order> getOrder(Integer customerId, Date startDate, Date endDate);
 
     /**
      * Método para guardar ordenes
-     * @param {@link Order}
+     * @param order {@link Order}
      * @return id orden guardada
      */
     Integer saveOrder(Order order);

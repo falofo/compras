@@ -10,7 +10,7 @@ import java.util.List;
 public interface ICustomerService {
     /**
      * Metodo para obtener lista de clientes
-     * @return List<{@link Customer}>listado de todos los clientes
+     * @return List {@link Customer} listado de todos los clientes
      */
     List<Customer> getCustomers();
 }

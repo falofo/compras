@@ -24,7 +24,7 @@ public class ProductController {
     /**
      * Método para obtener productos habilitados por cliente
      * @param customerId id del cliente
-     * @return List<{@link AvailableProduct}>listado de productos
+     * @return List {@link AvailableProduct} listado de productos
      */
     @RequestMapping(value = "/{customerId}",method = RequestMethod.GET)
     public ResponseEntity<?> getProducts(@PathVariable("customerId") int customerId){

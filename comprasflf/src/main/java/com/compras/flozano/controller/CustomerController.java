@@ -22,7 +22,7 @@ public class CustomerController {
 
     /**
      * Método para obtener clientes
-     * @return List<{@link Customer}>listado de todos los clientes
+     * @return List {@link Customer} listado de todos los clientes
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getCustomers(){

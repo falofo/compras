@@ -13,7 +13,7 @@ public interface IProductService {
     /**
      * Método para obtener productos habilitados por cliente
      * @param customerId id del cliente
-     * @return List<{@link AvailableProduct}>listado de productos
+     * @return List {@link AvailableProduct} listado de productos
      */
     List<AvailableProduct> getAvailableProducts(Integer customerId);
 }

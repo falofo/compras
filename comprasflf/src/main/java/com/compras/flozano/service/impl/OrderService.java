@@ -8,6 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.TypedQuery;
 import javax.transaction.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,9 +17,11 @@ import java.util.List;
 @Service("orderService")
 public class OrderService extends AbstractService implements IOrderService {
 
-    public List<Order> getOrder(Integer customerId) {
+    public List<Order> getOrder(Integer customerId, Date startDate, Date endDate) {
         TypedQuery<Order> query = em.createNamedQuery("Order.findByCustomerId", Order.class);
         query.setParameter("customer_id", customerId);
+        query.setParameter("start_date", startDate);
+        query.setParameter("end_date", endDate);
         List<Order> lista = query.getResultList();
         return lista;
     }

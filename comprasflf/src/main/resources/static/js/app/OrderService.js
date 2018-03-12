@@ -13,7 +13,11 @@ angular.module('ComprasApp').factory('OrderService',
             function getOrderByCustomerId(id) {
                 console.log('Obteniendo ordenes del cliente' + id);
                 var deferred = $q.defer();
-                $http.get(urls.ORDER_SERVICE_API+'/' +id)
+                var endDate = new Date();
+                endDate.setDate(endDate.getDate() + 1);
+                var startDate = new Date();
+                startDate.setMonth(startDate.getMonth() - 1);
+                $http.get(urls.ORDER_SERVICE_API+'/' +id +'/' + yyyymmdd(startDate)+"/"+yyyymmdd(endDate))
                     .then(
                         function (response) {
                             console.log('Ordenes obtenidas satisfactoriamente');
@@ -26,6 +30,17 @@ angular.module('ComprasApp').factory('OrderService',
                     );
                 return deferred.promise;
             }
+
+
+            function yyyymmdd(date) {
+              var mm = date.getMonth() + 1; // getMonth() is zero-based
+              var dd = date.getDate();
+
+              return [date.getFullYear(),
+                      (mm>9 ? '' : '0') + mm,
+                      (dd>9 ? '' : '0') + dd
+                     ].join('');
+            };
 
         }
     ]);
