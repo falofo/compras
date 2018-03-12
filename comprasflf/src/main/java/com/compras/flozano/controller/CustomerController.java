@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Fabiani Lozano on 11/03/2018.
  */
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
     @Autowired
     ICustomerService customerService;
@@ -24,7 +24,7 @@ public class CustomerController {
      * Método para obtener clientes
      * @return List<{@link Customer}>listado de todos los clientes
      */
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> getCustomers(){
         List<Customer> customerList = customerService.getCustomers();
         if (customerList.size()==0){

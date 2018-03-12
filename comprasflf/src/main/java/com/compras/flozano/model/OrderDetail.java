@@ -21,9 +21,11 @@ public class OrderDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "detail_id")
+    @JsonIgnore
     private Integer detailId;
-    @Column(name = "product_id")
-    private Integer productId;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    private Product product;
     @Basic(optional = false)
     @Column(name = "quantity")
     private int quantity;
@@ -40,12 +42,12 @@ public class OrderDetail implements Serializable {
         this.detailId = detailId;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {

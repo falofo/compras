@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Fabiani Lozano on 10/03/2018.
  */
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/api/order")
 public class OrderController {
     @Autowired
     IOrderService orderService;

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Fabiani Lozano on 11/03/2018.
  */
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/product")
 public class ProductController {
     @Autowired
     IProductService productService;
